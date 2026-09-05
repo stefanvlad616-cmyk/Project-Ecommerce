@@ -360,7 +360,7 @@ docker compose exec airflow-webserver cat /opt/airflow/simple_auth_manager_passw
 
 everytime to see your generated password
 
-**2. My simple technique, by creating a file named "simple_auth_manager_passwords.json.generated" in the project folder, and set you password before airflow will create one;**
+**2. My simple technique, by creating a file named "simple_auth_manager_passwords.json.generated" in the project folder, and set your password before airflow will create one;**
 
 Inside the file, paste:
 
@@ -368,7 +368,7 @@ Inside the file, paste:
 {"your_username": "your_password"}
 ```
 
-and put the desired credentials; username should be the one from AIRFLOW_SIMPLE_AUTH_MANAGER_USERS.
+and insert the desired credentials; username should be the one from AIRFLOW_SIMPLE_AUTH_MANAGER_USERS.
 
 ## Logs
 
@@ -388,7 +388,7 @@ Check the running containers:
 docker compose ps
 ```
 
-After the first build, next times yoo can run it by just "docker compose up -d"
+After the first build, next times you can run it just by "docker compose up -d"
 
 Airflow should then be available through the configured webserver port.
 
