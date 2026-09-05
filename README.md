@@ -337,13 +337,22 @@ AIRFLOW_DB_NAME=
 
 The same values are used by init-db/init.sh to create the Airflow database and database user.
 
-The project also uses simple_auth_manager_passwords.json.generated as a local password file. This file is intentionally excluded from Git using .gitignore.
+The project also uses simple_auth_manager_passwords.json.generated as a local password file.
+This file is intentionally excluded from Git using .gitignore.
+
 So you have 2 options:
-1.Run command "docker compose exec airflow-webserver cat /opt/airflow/simple_auth_manager_passwords.json.generated" everytime to see your generated password
-2.My simple technique, by creating a file named "simple_auth_manager_passwords.json.generated" in the project folder, and set you password before airflow will create one;
--inside the file, paste this {"your_username": "your_password"} and put the desired credentials; username should be the one from AIRFLOW_SIMPLE_AUTH_MANAGER_USERS.
+
+1.Run command:
+"docker compose exec airflow-webserver cat /opt/airflow/simple_auth_manager_passwords.json.generated"
+everytime to see your generated password
+
+2.My simple technique, by creating a file named "simple_auth_manager_passwords.json.generated" 
+in the project folder, and set you password before airflow will create one;
+-inside the file, paste this {"your_username": "your_password"} and put the desired credentials; 
+username should be the one from AIRFLOW_SIMPLE_AUTH_MANAGER_USERS.
   
-Also for a more detailed description about every task, create an empty folder in the project named logs; it's already set up so it will fill by itself with details.
+Also for a more detailed description about every task, create an empty folder in the project named logs;
+it's already set up so it will fill by itself with details.
 
 ### Start the project
 
