@@ -258,6 +258,7 @@ Project-Ecommerce/
 ├── requirements.txt
 ├── .env
 ├── .gitignore
+├── E-Commerce-Dashboard.pbix
 └── README.md
 ```
 
