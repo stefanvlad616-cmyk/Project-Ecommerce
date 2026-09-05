@@ -303,35 +303,45 @@ AIRFLOW_JWT_SECRET=generate_a_random_secret
 
 
 ```
-Generate the Airflow security keys
+## Generate the Airflow security keys
 
-1. Generate AIRFLOW_FERNET_KEY
+### 1. Generate AIRFLOW_FERNET_KEY
 
-Run:
+**Run:**
 
+```bash
 python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+```
 
-Copy the generated value into:
+**Copy the generated value into:**
 
+```env
 AIRFLOW_FERNET_KEY=
+```
 
-2. Generate AIRFLOW_JWT_SECRET
+### 2. Generate AIRFLOW_JWT_SECRET
 
-Run:
+**Run:**
 
+```bash
 python -c "import secrets; print(secrets.token_urlsafe(32))"
+```
 
-Copy the generated value into:
+**Copy the generated value into:**
 
+```env
 AIRFLOW_JWT_SECRET=
+```
 
-Configure the Airflow database
+## Configure the Airflow database
 
 These values define the database and user that Airflow uses for its metadata database:
 
+```env
 AIRFLOW_DB_USER=
 AIRFLOW_DB_PASSWORD=
 AIRFLOW_DB_NAME=
+```
 
 (here you can choose your credentials for each one)
 
@@ -340,19 +350,31 @@ The same values are used by init-db/init.sh to create the Airflow database and d
 The project also uses simple_auth_manager_passwords.json.generated as a local password file.
 This file is intentionally excluded from Git using .gitignore.
 
-So you have 2 options:
+### So you have 2 options:
 
-1.Run command:
-"docker compose exec airflow-webserver cat /opt/airflow/simple_auth_manager_passwords.json.generated"
+**1. Run command:**
+
+```bash
+docker compose exec airflow-webserver cat /opt/airflow/simple_auth_manager_passwords.json.generated
+```
+
 everytime to see your generated password
 
-2.My simple technique, by creating a file named "simple_auth_manager_passwords.json.generated" 
-in the project folder, and set you password before airflow will create one;
--inside the file, paste this {"your_username": "your_password"} and put the desired credentials; 
-username should be the one from AIRFLOW_SIMPLE_AUTH_MANAGER_USERS.
-  
+**2. My simple technique, by creating a file named "simple_auth_manager_passwords.json.generated" in the project folder, and set you password before airflow will create one;**
+
+Inside the file, paste:
+
+```json
+{"your_username": "your_password"}
+```
+
+and put the desired credentials; username should be the one from AIRFLOW_SIMPLE_AUTH_MANAGER_USERS.
+
+## Logs
+
 Also for a more detailed description about every task, create an empty folder in the project named logs;
 it's already set up so it will fill by itself with details.
+
 
 ### Start the project
 
