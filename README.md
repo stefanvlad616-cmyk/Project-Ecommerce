@@ -81,6 +81,7 @@ The project uses a free to use e-commerce dataset containing:
 
 Example relationships:
 
+```text
 Customers
     │
     └──── Orders
@@ -90,26 +91,24 @@ Customers
                         └──── Products
 
 Customers ───── Reviews ───── Products
-
+```
 ## Pipeline
 
 The main Airflow DAG follows this workflow:
 
-load_data
-    │
-    ▼
-validate_data
-    │
-    ▼
-transform_data
-    │
-    ├──────────────┐
-    ▼              ▼
-daily_sales   category_sales
-                   │
-                   ▼
-             weekday_sales
+```text
+              load_data
+                  │
+                  ▼
+              validate_data
+                  │
+                  ▼
+            transform_data
+            /      |      \
+           ▼       ▼       ▼
+daily_sales  category_sales  weekday_sales
 
+```
 ### 1. Data Loading
 
 CSV files are loaded into PostgreSQL using Python and Pandas.
@@ -235,6 +234,7 @@ This makes the project reproducible across different environments.
 
 ## Project Structure
 
+```text
 Project-Ecommerce/
 │
 ├── dags/
@@ -251,12 +251,15 @@ Project-Ecommerce/
 ├── init-db/
 │   └── init.sh
 │
+├── logs/
+│
 ├── Dockerfile.airflow
 ├── docker-compose.yml
 ├── requirements.txt
+├── .env
 ├── .gitignore
 └── README.md
-
+```
 
 ##### Running the Project ######
 
@@ -340,7 +343,7 @@ So you have 2 options:
 2.My simple technique, by creating a file named "simple_auth_manager_passwords.json.generated" in the project folder, and set you password before airflow will create one;
 -inside the file, paste this {"your_username": "your_password"} and put the desired credentials; username should be the one from AIRFLOW_SIMPLE_AUTH_MANAGER_USERS.
   
-
+Also for a more detailed description about every task, create an empty folder in the project named logs; it's already set up so it will fill by itself with details.
 
 ### Start the project
 
